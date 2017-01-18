@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="estilo.css">
+    <script type="text/javascript">
+      function visualiza(elId) {
+        //selecciona los div dentro de contenido
+        var losDiv = document.getElementById("contenido").getElementsByTagName("div");
+        //oculta los div seleccionados
+        for(var i = 0; i < losDiv.length; i++){
+          losDiv[i].style.display = "none";
+        }
+        //muestra el div indicado
+        document.getElementById(elId).style.display = "block";
+        // cancela el evento normal del enlace (equivale a e.preventDefault());
+        return false;
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="titulo">
+      <div id="texto">
+        <h1>Recetas de la abuela</h1>
+        <p>Como en casa en ningún sitio!</p>
+      </div>
+      <div id="logo">
+        <a href="http://www.google.es" target="_blank" title="abre pagina de google"><img src="logo.png" alt="logo"></a>
+      </div>
+    </div>
+
+    <div id="navegacion">
+      <ul>
+	       <li><a href="abuela.html" onclick="visualiza('presentacion');">Presentación</a></li>
+	       <li><a href="#primeros" onclick="visualiza('primeros');">Primer plato</a></li>
+	       <li><a href="#segundos" onclick="visualiza('segundos');">Segundo plato</a></li>
+	       <li><a href="#postres" onclick="visualiza('postres');">Postre</a></li>
+       </ul>
+     </div>
+<!-- Inicio de contenido -->
+<div id="contenido">
+
+<div id="presentacion">
+  <table summary="Tabla con ingredientes para la tortilla de la abuela">
+    <tr>
+      <th>Ingredientes</th>
+    </tr>
+    <tr>
+      <td>Patatas</td>
+    </tr>
+    <tr>
+      <td>Huevos</td>
+    </tr>
+    <tr>
+      <td>Cebolla</td>
+    </tr>
+    <tr>
+      <td>Sal</td>
+    </tr>
+  </table>
+  <img id="tortilla" src="tortilla.jpg" alt="tortilla de patatas"></img>
+  <h2>Elaboracion</h2>
+  <p>Mientras se fríen bien las patatas por todos lados, junto a la cebolla, vamos a batir los huevos en un bol, y les añadimos un puñado de sal, al gusto de cada uno. Una vez saquemos de la sartén los ingredientes fritos, dejamos escurrir bien el aceite sobrante y los añadimos sobre el huevo batido.</p>
+</div>
+<div id="lateral">
+  <h3>Síguenos</h3>
+  <ul>
+    <li><a href="#">Twitter</a></li>
+    <li><a href="#">Youtube</a></li>
+    <li><a href="#">Facebook</a></li>
+  </ul>
+  <h3>Webs amigas</h3>
+  <ul>
+    <li><a href="#">El cocinillas</a></li>
+    <li><a href="#">Cocina para dummys</a></li>
+    <li><a href="#">Recetas en 4 min</a></li>
+  </ul>
+</div>
+
+<div id="pie">
+<ul>
+<li><img src="1.png" target="_blank" title="Las páginas que llevan este logo indican una declaración de conformidad por parte del autor o del proveedor de contenido de ajustarse al Nivel A de las Directrices de Accesibilidad para el Contenido Web 1.0 del W3C, incluyendo todos los puntos de verificación de Prioridad 1 definidos en las Directrices. Las Directrices de Accesibilidad para el Contenido Web 1.0 explican cómo hacer el contenido Web accesible para las personas con discapacidad. Ajustándose a estas Directrices ayudará a hacer la Web más accesible a los usuarios con discapacidades y beneficiará a todos los usuarios.">
+  <img src="2.png" target="_blank" title="Las páginas que llevan este logo indican una declaración de conformidad por parte del autor o proveedor de contenido de ajustarse al nivel Doble-A de las Directrices de Accesibilidad para el Contenido Web 1.0 del W3C, incluyendo todos los puntos de verificación de Prioridad 1 y Prioridad 2 definidos en las Directrices. Las Directrices de Accesibilidad para el Contenido Web 1.0 explican cómo hacer el contenido Web accesible para las personas con discapacidad. Ajustándose a estas Directrices ayudará a hacer la Web más accesible a los usuarios con discapacidades y beneficiará a todos los usuarios.">
+  <img src="3.png" target="_blank" title="Las páginas que llevan este logo indican una declaración de conformidad por parte del autor o proveedor de contenidos de ajustarse al nivel Triple-A de las Directrices de Accesibilidad para el Contenido Web 1.0, incluyendo todos los puntos de verificación de Prioridad 1, Prioridad 2, y Prioridad 3 definidos en las Directrices. Las Directrices de Accesibilidad para el Contenido Web 1.0 explican cómo hacer el contenido Web accesible para las personas con discapacidad. Ajustándose a estas Directrices ayudará a hacer la Web más accesible a los usuarios con discapacidades y beneficiará a todos los usuarios."></li>
+</ul>
+</div>
+</body>
+</html>
