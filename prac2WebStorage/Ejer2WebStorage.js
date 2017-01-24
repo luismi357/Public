@@ -24,6 +24,8 @@ if(window.sessionStorage!=undefined){
   }else if(eventos.checked==true){
     formulario.action="eventos.html"
   }
-}
+  }else{
+  alert("El navegador no es compatible");
   }
+ }
 }
