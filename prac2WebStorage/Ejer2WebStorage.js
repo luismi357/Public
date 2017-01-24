@@ -1,7 +1,7 @@
 onload=function(){
   var formulario = document.forms[0];
   formulario.onsubmit = function(){
-
+if(window.sessionStorage!=undefined){
   localStorage.nombre=nombre.value;
   localStorage.apellidos=apellidos.value;
   sessionStorage.color=color.value;
@@ -24,6 +24,6 @@ onload=function(){
   }else if(eventos.checked==true){
     formulario.action="eventos.html"
   }
-
+}
   }
 }
