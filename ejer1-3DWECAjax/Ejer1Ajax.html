@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejer1Ajax</title>
+    <script type="text/javascript">
+
+      //Crear el objeto xhr
+      //Lo de los ifs es para la compatibilidad de navegadores antiguos.
+      if(window.XMLHttpRequest){
+      var xhr = new XMLHttpRequest();
+    }else if(ActiveXObject("Microsoft.XMLHttpRequest")){
+      var xhr=ActiveXObject("Microsoft.XMLHttpRequest");
+    }
+      //Crear la funcion que realiza la peticion
+      function solicitarDatos(){
+        xhr.onreadystatechange = gestionarDatos;
+        //En get no se pueden poner datos en send, si fuera post si.
+        xhr.open('GET','datos.txt',true);
+        xhr.send();
+      }
+
+
+      function gestionarDatos(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          resultado.innerHTML = xhr.responseText;
+        }else if(xhr.readyState == 4 && xhr.status !=200){
+          var str="Se ha producido el error: " + xhr.status;
+          str += "\n "+ xhr.statusText;
+          str += "\n Mas información:";
+          str +="\n"+ xhr.getAllResponseHeaders();
+          alert(str);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Ejercicio Hola Mundo</h1>
+    <input type="button" value="Solicitar datos" onclick="solicitarDatos()"></input>
+    <p id="resultado">Este es el texto que sale al principio</p>
+  </body>
+</html>
