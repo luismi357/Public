@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ejercicio 8 POST</title>
+		<script type="text/javascript">
+
+			if (window.XMLHttpRequest){
+			    xhr = new XMLHttpRequest();
+			}else if (ActiveXObject("Microsoft.XMLHTTP")){
+			    xhr = ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			function comprobarLogin(e) {
+				e.preventDefault();
+				var nombre = encodeURIComponent(nom.value);
+				var pass = encodeURIComponent(contra.value);
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						resultado.innerHTML = xhr.responseText;
+					}
+				}
+				xhr.open("POST", "http://localhost/validaLogin.php", true);
+				var str = "nombre=" + nombre + "&pass=" + pass;
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.send(str);
+			}
+
+		</script>
+	</head>
+	<body>
+		<form method="POST">
+			Nombre <input type="text" name="nombre" id="nom"><br>
+			Password <input type="password" name="pass" id="contra">
+			<p id="resultado"></p>
+			<input type="submit" value="Enviar" onclick="comprobarLogin(event)">
+		</form>
+	</body>
+</html>

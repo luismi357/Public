@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo Login Post</title>
+    <script type="text/javascript">
+      var xhr= new XMLHttpRequest();
+
+      function solicitarDatos(){
+        xhr.onreadystatechange = gestionarDatos;
+        //En get no se pueden poner datos en send, si fuera post si.
+        xhr.open('GET','datos.json',true);
+        xhr.send();
+        }
+
+    function gestionarDatos(){
+      if(xhr.readyState == 4 && xhr.status == 200){
+      var jsonDoc=JSON.parse(xhr.responseText);
+      var tabla="<table><th>Nombre</th><th>Apellido</th><th>Nota</th>";
+    for(var i=0;i<jsonDoc.alumnos.length;i++){
+      tabla+="<tr><td>"+jsonDoc.alumnos[i].nombre+'</td><td>'+jsonDoc.alumnos[i].apellido+"</td><td>"+jsonDoc.alumnos[i].nota+"</td></tr>";
+    }
+    tabla+="</table>";
+    console.log(jsonDoc.alumnos[0].nota);
+    resultado.innerHTML=tabla;
+  }else if(xhr.readyState == 4 && xhr.status !=200){
+    var str="Se ha producido el error: " + xhr.status;
+    str += "\n "+ xhr.statusText;
+    str += "\n Mas información:";
+    str +="\n"+ xhr.getAllResponseHeaders();
+    alert(str);
+  }
+}
+    </script>
+  </head>
+  <body>
+    <form method="get">
+        <p id="resultado"></p>
+        <input type="button" value="Enviar" onclick="solicitarDatos()">
+    </form>
+  </body>
+</html>
