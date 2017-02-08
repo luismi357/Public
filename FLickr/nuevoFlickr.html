@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejemplo Hola mundo JQ Ajax </title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("button").click(function(){
+      function retornaSeleccion(){
+        var retSeleccion=$("#seleccion").val();
+        return retSeleccion;
+      }
+			var url="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+			$.getJSON( url, {
+				tags: retornaSeleccion(),
+				tagmode: "any",
+				format: "json",
+				lang:"es-us"
+			},
+			function( data ) {
+        $(".imagenes").empty();
+				$.each( data.items, function( i, item ) {
+
+					$( "<img>" ).attr( "src", item.media.m ).appendTo(".imagenes");
+					if ( i === 9 ) { return false;} //Hago esto para mostrar sólo 4
+				});
+			});
+
+		});
+    $("#enviar").click(function(){
+      function retornaSeleccion2(){
+        var retSeleccion2=$("#texto").val();
+        return retSeleccion2;
+      }
+			var url2="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+			$.getJSON( url2, {
+				tags: retornaSeleccion2(),
+				tagmode: "any",
+				format: "json",
+				lang:"es-us"
+			},
+			function( data ) {
+        $(".imagenes").empty();
+				$.each( data.items, function( i, item ) {
+					$( "<img>" ).attr( "src", item.media.m ).appendTo(".imagenes");
+					if ( i === 9 ) { return false;} //Hago esto para mostrar sólo 4
+				});
+			});
+
+		});
+	});
+
+	</script>
+  <style media="screen">
+    img{
+      display: inline;
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <select id="seleccion">
+    <option value="">Selecciona</option>
+    <option value="perros">perros</option>
+    <option value="gatos">gatos</option>
+    <option value="elefantes">elefantes</option>
+    <option value="monos">monos</option>
+    <option value="jirafas">jirafas</option>
+    <option value="lemures">lemures</option>
+  </select>
+	<button type="button" name="button">Dibuja la imagen</button><br><br>
+  <input type="text" name="texto" id="texto" placeholder="Introduce aqui tu busqueda:">
+  <input type="button" name="enviar" value="Enviar busqueda" id="enviar">
+  <div class="imagenes">
+	</div>
+</body>
+</html>
