@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejemplo Hola mundo JQ Ajax </title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#seleccion").change(function(){
+		$("#res").empty();
+		$("#seleccion2").empty();
+			var url="http://swapi.co/api/";
+			var ch=$("#seleccion").val();
+			url+=ch;
+			$.getJSON( url,	function( data ) {
+					$.each( data.results, function( i, item ) {
+						if(item.name){
+						$( "<option>" ).attr( "value", item.url).html(item.name).appendTo("#seleccion2");
+						}
+						if(item.title){
+							$( "<option>" ).attr( "value", item.url).html(item.title).appendTo("#seleccion2");
+						}
+					});
+					$("#seleccion2").change(function(){
+							$("#res").empty();
+
+						$.getJSON($("#seleccion2").val(),function (data){
+							$.each(data, function(i,item){
+									if(!/^http/.test(item)){
+								$("<div>").html(i+":"+item).appendTo("#res");
+							};
+						});
+					});
+				});
+			});
+
+			// $("#resultado").load("datos.txt",function(datos, st, xhr){
+			// 	if(st=="error"){
+			// 		alert("No  ha ido bien¡");
+			// 	}
+			// 	if(st=="success"){
+			// 		alert("Mensaje"+datos);
+			// 	}
+			// });
+		});
+	});
+	</script>
+	<style media="screen">
+		#res{
+			display: inline-block;
+			text-align: justify;
+		}
+		select{
+			display: inline-block;
+			vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<!-- <button type="button" name="button">Enviame informacion</button> -->
+	<select id="seleccion">
+		<option value="selecciona">Selecciona Categoria</option>
+	  <option value="films">Peliculas</option>
+    <option value="starships">Naves</option>
+    <option value="planets">Planetas</option>
+    <option value="people">Personajes</option>
+    <option value="none"></option>
+	</select>
+	<select id="seleccion2">
+		<option value="seleccionaR">selecciona</option>
+	</select>
+	<div id="res">
+	</div>
+	<!-- <p id="resultado">Antes de que me envies texto con Ajax</p> -->
+</body>
+</html>
